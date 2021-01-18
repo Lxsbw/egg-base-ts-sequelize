@@ -5,6 +5,7 @@ coverage/
 .idea/
 run/
 logs/
+dist/
 
 .DS_Store
 *.swp
