@@ -6,4 +6,6 @@ export default (app: Application) => {
   router.get('/', controller.home.index);
 
   router.get('/hello', controller.home.hello);
+
+  router.get('/api/mobile-phone/findall', controller.mobilePhone.findAll);
 };
