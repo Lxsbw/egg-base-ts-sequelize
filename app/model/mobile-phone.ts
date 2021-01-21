@@ -2,7 +2,7 @@
  * @Author: zhixiong.fu
  * @Date: 2021-01-18 23:42:50
  * @Last Modified by: zhixiong.fu
- * @Last Modified time: 2021-01-21 22:57:12
+ * @Last Modified time: 2021-01-22 02:14:05
  */
 
 import {
@@ -15,6 +15,12 @@ import {
   UpdatedAt,
   DeletedAt
 } from 'sequelize-typescript';
+import * as _ from 'lodash';
+// import { FlakeId } from 'flake-idgen';
+// import { intformat } from 'biguint-format';
+import FlakeId = require('flake-idgen');
+import intformat = require('biguint-format');
+const flakeIdgen = new FlakeId({ epoch: 1300000000000 });
 
 @Table({
   tableName: 'mobile_phone'
@@ -26,7 +32,9 @@ export class MobilePhone extends Model<MobilePhone> {
   // @AutoIncrement
   @Column({
     type: DataType.STRING(50),
-    comment: 'key'
+    comment: 'key',
+    autoIncrement: false,
+    defaultValue: () => _.toString(intformat(flakeIdgen.next(), 'dec'))
   })
   id: string;
 

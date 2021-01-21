@@ -7,5 +7,11 @@ export default (app: Application) => {
 
   router.get('/hello', controller.home.hello);
 
+  //   router.get('/api/mobile-phone/findall', controller.mobilePhone.findAll);
+
+  router.get('/api/mobile-phone/find', controller.mobilePhone.findOne);
   router.get('/api/mobile-phone/findall', controller.mobilePhone.findAll);
+  router.post('/api/mobile-phone/create', controller.mobilePhone.create);
+  router.put('/api/mobile-phone/update', controller.mobilePhone.update);
+  router.delete('/api/mobile-phone/delete', controller.mobilePhone.delete);
 };
