@@ -2,7 +2,7 @@
  * @Author: zhixiong.fu
  * @Date: 2021-01-19 00:50:58
  * @Last Modified by: zhixiong.fu
- * @Last Modified time: 2021-01-19 22:56:21
+ * @Last Modified time: 2021-01-21 22:45:03
  */
 
 // const BaseService = require('../base/base-service');
@@ -71,10 +71,9 @@ export default class MobilePhoneService extends Service {
     //   limit: _.toInteger(_.get(ctx, 'mid.limit', 6)),
     //   offset: _.toInteger(_.get(ctx, 'mid.offset', 0))
     // };
-
     const offset = 0;
     const limit = 10;
-    const result = this.ctx.model.MobilePhone.findAndCountAll({
+    const result = await this.ctx.model.MobilePhone.findAndCountAll({
       offset,
       limit,
       order: [

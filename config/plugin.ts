@@ -9,7 +9,7 @@ const plugin: EggPlugin = {
 };
 
 plugin.sequelize = {
-  package: 'egg-sequelize',
+  package: 'egg-sequelize-ts',
   enable: true
 };
 

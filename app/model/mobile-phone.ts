@@ -2,58 +2,82 @@
  * @Author: zhixiong.fu
  * @Date: 2021-01-18 23:42:50
  * @Last Modified by: zhixiong.fu
- * @Last Modified time: 2021-01-19 23:47:58
+ * @Last Modified time: 2021-01-21 22:57:12
  */
 
-import { Application } from 'egg';
-// import { DataTypes } from 'sequelize';
+import {
+  Column,
+  DataType,
+  Model,
+  PrimaryKey,
+  Table,
+  CreatedAt,
+  UpdatedAt,
+  DeletedAt
+} from 'sequelize-typescript';
 
-export default (app: Application) => {
-  //   const DataTypes: DataTypes = app.Sequelize.DataTypes;
+@Table({
+  tableName: 'mobile_phone'
+  // timestamps: false,
+  // freezeTableName: true
+})
+export class MobilePhone extends Model<MobilePhone> {
+  @PrimaryKey
+  // @AutoIncrement
+  @Column({
+    type: DataType.STRING(50),
+    comment: 'key'
+  })
+  id: string;
 
-  const { STRING, DATE, INTEGER } = app.Sequelize;
+  @Column({
+    type: DataType.STRING(50),
+    comment: '型号'
+  })
+  modelName: string;
 
-  const MobilePhone = app.model.define(
-    'mobilePhone',
-    {
-      // key
-      id: {
-        type: STRING(50),
-        primaryKey: true
-        // defaultValue: () => intformat(flakeIdGen.next(), 'dec')
-      },
-      // 型号
-      modelName: STRING(50),
-      // 尺寸
-      size: STRING(50),
-      // 规格
-      spec: STRING(50),
-      // 内存
-      ram: INTEGER,
-      // 空间
-      rom: INTEGER,
-      // 序列号
-      seriaNumber: STRING(50),
-      // 创建时间
-      createdAt: DATE,
-      // 更新时间
-      updatedAt: DATE,
-      // 删除时间
-      deletedAt: DATE
-    },
-    {
-      timestamps: true,
-      freezeTableName: true,
-      tableName: 'mobile_phone',
-      underscored: true,
-      paranoid: true
-      // createdAt: '',
-      // updatedAt: '',
-      // deletedAt: 'undefined',
-    }
-  );
+  @Column({
+    type: DataType.STRING(50),
+    comment: '尺寸'
+  })
+  size: string;
 
-  //   return MobilePhoneDo;
+  @Column({
+    type: DataType.STRING(50),
+    comment: '规格'
+  })
+  spec: string;
 
-  return class extends MobilePhone {};
-};
+  @Column({
+    // type: DataType.INTEGER(11),
+    comment: '内存'
+  })
+  ram: number;
+
+  @Column({
+    // type: DataType.INTEGER(11),
+    comment: '空间'
+  })
+  rom: number;
+
+  @Column({
+    type: DataType.STRING(50),
+    comment: '序列号'
+  })
+  seriaNumber: string;
+
+  // 创建时间
+  @CreatedAt
+  @Column
+  createdAt: Date;
+  // 更新时间
+  @UpdatedAt
+  @Column
+  updatedAt: Date;
+  // 删除时间
+  @DeletedAt
+  @Column
+  deletedAt: Date;
+}
+
+export default () => MobilePhone;
